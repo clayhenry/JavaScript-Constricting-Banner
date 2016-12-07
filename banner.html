@@ -108,7 +108,7 @@ html {
     {"title": "Background and Border Properties", "description": "The animation should play in reverse direction", "href" : "/home" }
   ]
 
-var populate = function(tplIndex){
+var populate = function(){
     var template = [];
       data.map(function(e){
                   template.push("<h1>" + e.title + "</h1>" + "<div class='contents'>"+ e.description + "<br /><br /><span><a href='" + e.href + "'>Read More</a></span></div>");
@@ -118,7 +118,7 @@ var populate = function(tplIndex){
 var timeout;
 
 //set default
-var defaultTpl = populate(2);
+var defaultTpl = populate();
 defaultTpl.forEach(function(e, i){
     container[0].innerHTML += "<div class='element' onMouseEnter='mouseOver(this)'>" + e + "</div>"
 })
