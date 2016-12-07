@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<style media="screen">
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  width:940px;
+  height:450px;
+  margin-top:100px;
+  background-color: lightgray;
+  }
+
+.container .element:last-child {
+  border-right: 0;
+  }
+
+.element {
+  border-right: 1px solid black;
+  width:200px;
+  height: 100%;
+  display: inline;
+  float: left;
+  padding:10px;
+  opacity:1;
+  transition:all 0.5s;
+  transform-origin: top left;
+  }
+
+.element .contents {
+  opacity:0;
+  color:blue;
+  transition: all 0.5s;
+  width:200px;
+  margin-top:110px;
+}
+
+.element h1 {
+  width:150px;
+  color: gray;
+}
+
+.element.current:hover h1 {
+  animation: opacityReverse 0.5s;
+}
+
+.element.current h1 {
+    font-size: 30px;
+    width:280px;
+    color: black;
+}
+
+.element:hover {
+  width:36%;
+}
+.element:hover h1 {
+  animation: opacity 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.element.current {
+    padding-top: 100px;
+    width:36%;
+}
+
+.current .contents {
+  opacity:1;
+  transition: all 0.5s;
+  margin-top: 0px;
+  width:200px;
+}
+
+@keyframes opacity {
+  from {opacity:1}
+  to {opacity:0}
+}
+
+@keyframes opacityReverse {
+  from {opacity:0}
+  to {opacity:1}
+}
+
+</style>
+
+<div class="container">
+</div>
+
+<script type="text/javascript">
+
+  var container = document.getElementsByClassName("container");
+  var element = container[0].getElementsByClassName("element");
+
+  var data = [
+    {"title": "Intro Frame", "description": "The numbers in the table specify the first browser version that fully supports the property." },
+    {"title": "CSS3 animation direction Property", "description": "Inherits this property from its parent element." },
+    {"title": "Default Values Reference", "description": "Default value. The animation should be played as normal." },
+    {"title": "Background and Border Properties", "description": "The animation should play in reverse direction" }
+  ]
+
+var populate = function(tplIndex){
+    var template = [];
+      data.map(function(e){
+                  template.push("<h1>" + e.title + "</h1>" + "<div class='contents'>"+ e.description + "</div>");
+            })
+    return template;
+};
+var timeout;
+
+//set default
+var defaultTpl = populate(2);
+defaultTpl.forEach(function(e, i){
+    container[0].innerHTML += "<div class='element' onMouseEnter='mouseOver(this)'>" + e + "</div>"
+})
+//timeouts
+var runTimout = function (target){
+    timeout = setTimeout(function(){
+      target.classList.add("current");
+    }, 200)
+}
+
+var stopTimout = function(){
+  clearTimeout(timeout)
+}
+
+element[0].classList.add('current');
+
+var mouseOver = function(e){
+  for (var i = 0; i < element.length; i++) {
+    element[i].classList.remove('current');
+  }
+      runTimout(e)
+};
+
+container[0].addEventListener('mouseleave', function(e){
+
+     if(e.target.classList.contains("element")) {
+         stopTimout();
+         for (var i = 0; i < element.length; i++) {
+           element[i].classList.remove('current');
+          }
+        element[0].classList.add('current');
+      }
+
+
+}, true)
+
+
+// var mouseleave = function(e){
+//       stopTimout()
+//       e.className = "element";
+// }
+
+</script>
+
+  </body>
+</html>
