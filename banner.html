@@ -102,16 +102,16 @@ html {
   var element = container[0].getElementsByClassName("element");
 
   var data = [
-    {"title": "Intro Frame", "description": "The numbers in the table specify the first browser version that fully supports the property." },
-    {"title": "CSS3 animation direction Property", "description": "Inherits this property from its parent element." },
-    {"title": "Default Values Reference", "description": "Default value. The animation should be played as normal." },
-    {"title": "Background and Border Properties", "description": "The animation should play in reverse direction" }
+    {"title": "Intro Frame", "description": "The numbers in the table specify the first browser version that fully supports the property.", "href" : "/home"  },
+    {"title": "CSS3 animation direction Property", "description": "Inherits this property from its parent element.", "href" : "/home"  },
+    {"title": "Default Values Reference", "description": "Default value. The animation should be played as normal.", "href" : "/home" },
+    {"title": "Background and Border Properties", "description": "The animation should play in reverse direction", "href" : "/home" }
   ]
 
 var populate = function(tplIndex){
     var template = [];
       data.map(function(e){
-                  template.push("<h1>" + e.title + "</h1>" + "<div class='contents'>"+ e.description + "</div>");
+                  template.push("<h1>" + e.title + "</h1>" + "<div class='contents'>"+ e.description + "<br /><br /><span><a href='" + e.href + "'>Read More</a></span></div>");
             })
     return template;
 };
@@ -151,15 +151,7 @@ container[0].addEventListener('mouseleave', function(e){
           }
         element[0].classList.add('current');
       }
-
-
 }, true)
-
-
-// var mouseleave = function(e){
-//       stopTimout()
-//       e.className = "element";
-// }
 
 </script>
 
